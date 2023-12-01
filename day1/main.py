@@ -10,7 +10,8 @@ def check(line):
         if line.rfind(i) != -1:
             coski.append((i, line.rfind(i)))
     coski.sort(key=lambda tup: tup[1])
-    return [coski[0][0], coski[-1][0]]
+    return [mapa[coski[0][0]] if coski[0][0] in mapa else coski[0][0],
+            mapa[coski[-1][0]] if coski[-1][0] in mapa else coski[-1][0]]
 
 
 with open('input.txt') as f:
@@ -18,9 +19,5 @@ with open('input.txt') as f:
         line = check(line)
         val0 = line[0]
         val1 = line[-1]
-        if val0 in mapa:
-            val0 = mapa[val0]
-        if val1 in mapa:
-            val1 = mapa[val1]
         sum += int(val0 + val1)
 print(sum)
