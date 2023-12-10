@@ -1,3 +1,5 @@
+from shapely.geometry import Point, Polygon
+
 def get_data():
     with open('input.txt') as f:
         return f.read().splitlines()
@@ -53,11 +55,25 @@ def part1(data):
             break
     best = len(loop_index)/2
     print(best)
+    return loop_index
+
+
+def part2(grid, indexes):
+    result = 0
+    for i in range(len(grid)):
+        left = 0
+        for j in range(len(grid[0])):
+            if [i, j] not in indexes and left % 2 == 1:
+                result += 1
+            if grid[i][j] in ['|', 'L', 'J', 'S'] and [i, j] in indexes:
+                left += 1
+    print(result)
 
 
 if __name__ == '__main__':
     data = get_data()
-    part1(data)
+    indesxes = part1(data)
+    part2(data, indesxes)
 
 '''
 | is a vertical pipe connecting north and south.
