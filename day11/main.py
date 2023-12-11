@@ -28,7 +28,7 @@ def is_between(x1, x2, to_expand, to_add):
     return suma
 
 
-def part1(data, to_add=0):
+def part1(data, to_add=1):
     to_expand_rows = []
     to_expand_col = []
     for i, line in enumerate(data):
